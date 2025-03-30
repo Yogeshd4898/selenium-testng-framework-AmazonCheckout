@@ -8,10 +8,9 @@
 	<artifactId>amazon-automation-framework</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<!-- Define properties for version management and compiler configuration -->
 	<properties>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 		<selenium.version>4.8.0</selenium.version>
 		<testng.version>7.4.0</testng.version>
 		<extentreports.version>5.0.9</extentreports.version>
@@ -20,57 +19,91 @@
 		<commons.io.version>2.11.0</commons.io.version>
 		<slf4j.version>2.0.7</slf4j.version>
 		<surefire.plugin.version>3.0.0-M7</surefire.plugin.version>
+		<lombok.version>1.18.30</lombok.version>
 	</properties>
 
 	<dependencies>
-		<!-- Selenium Java -->
+		<!-- Selenium -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>${selenium.version}</version>
 		</dependency>
+
 		<!-- TestNG -->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>${testng.version}</version>
-			<scope>test</scope>
+			<!-- Remove scope, or set to compile -->
 		</dependency>
+
+
 		<!-- ExtentReports -->
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>${extentreports.version}</version>
 		</dependency>
+
 		<!-- WebDriverManager -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>${webdrivermanager.version}</version>
 		</dependency>
-		<!-- Jackson for JSON -->
+
+		<!-- Jackson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		<!-- Apache Commons IO for screenshot utils -->
+
+		<!-- Commons IO -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons.io.version}</version>
 		</dependency>
-		<!-- SLF4J binding -->
+
+		<!-- SLF4J -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
+
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- Maven Surefire Plugin for TestNG -->
+			<!-- Compiler Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<fork>true</fork>
+					<compilerArgs>
+						<arg>
+							--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+						<arg>
+							--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+
+			<!-- Surefire Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>

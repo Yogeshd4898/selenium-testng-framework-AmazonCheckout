@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [AmazonAutomationSuite]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="com.example.listeners.TestListener"/>
+  </listeners>
+  <test thread-count="5" name="CheckoutTest(failed)" verbose="0">
+    <classes>
+      <class name="com.example.tests.CheckoutTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="testCheckoutFlow" invocation-numbers="0 0 0"/>
+        </methods>
+      </class> <!-- com.example.tests.CheckoutTest -->
+    </classes>
+  </test> <!-- CheckoutTest(failed) -->
+</suite> <!-- Failed suite [AmazonAutomationSuite] -->

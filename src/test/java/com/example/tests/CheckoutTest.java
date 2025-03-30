@@ -44,7 +44,6 @@ public class CheckoutTest extends BaseTest {
         CartPage cartPage = new CartPage(driver);
         PaymentPage paymentPage = new PaymentPage(driver);
         
-        //hello
         // Execute checkout flow
         loginPage.login(email, password);
         homePage.searchProduct(productName);
